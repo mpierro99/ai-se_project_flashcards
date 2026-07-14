@@ -19,3 +19,7 @@ each of which can be viewed in a carousel.
 - Vanilla JavaScript (ES modules)
 - The HTML `<template>` element for dynamic rendering
 - Git and GitHub (deployed with GitHub Pages)
+
+## Deployed Site
+
+Check out [this site](https://mpierro99.github.io/ai-se_project_flashcards) on GitHub Pages.
