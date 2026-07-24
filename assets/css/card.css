@@ -37,12 +37,11 @@
   margin: 0;
 }
 
-.card__delete-btn {
+.card__btn {
   width: 24px;
   height: 24px;
   border: none;
   background-color: transparent;
-  background-image: url(../images/delete.svg);
   background-repeat: no-repeat;
   background-position: center;
   opacity: 50%;
@@ -50,8 +49,21 @@
   z-index: 2;
 }
 
-.card__delete-btn:hover {
+.card__btn:hover {
   opacity: 100%;
+}
+
+.card__btn_type_delete {
+  background-image: url(../images/delete.svg);
+}
+
+.card__btn_type_flip {
+  background-image: url(../images/flip.svg);
+}
+
+.card__delete-btn {
+  width: 24px;
+  height: 24px;
 }
 
 .card_color_green {
@@ -71,4 +83,20 @@
 }
 .card_color_yellow {
   background-color: #f5d770;
+}
+
+.card__answer {
+  display: none;
+}
+
+.card_flipped .card__title {
+  display: none;
+}
+
+.card_flipped .card__answer {
+  display: block;
+}
+
+.card.card_flipped {
+  background-color: #fff;
 }

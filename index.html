@@ -38,15 +38,13 @@
         <button class="gallery__new-card-btn" type="button">+ New Deck</button>
       </section>
 
-      <section id="deck-view" class="gallery">
+     <section id="deck-view" class="gallery">
         <div class="gallery__header">
-        <h2 class="gallery__title"></h2>
-        <button type="button" class="gallery__practice-btn">Practice</button>
+          <h2 class="gallery__title"></h2>
+          <button type="button" class="gallery__practice-btn">Practice</button>
         </div>
-        <div class="wrapping-row">
-        <ul class="gallery__list wrapping-row__display-contents"></ul>
+        <ul class="gallery__list"></ul>
         <button type="button" class="gallery__new-card-btn">+ New Card</button>
-        </div>
       </section>
     </main>
 
@@ -57,6 +55,7 @@
           the main list.
         </p>
       </section>
+      
       <section id="carousel" class="carousel">
         <h2 class="carousel__title"></h2>
         <div class="carousel__cards">
@@ -94,7 +93,7 @@
       <button
         type="button"
         aria-label="Delete deck"
-        class="card__delete-btn"
+        class="card__delete-btn card__btn card__btn_type_delete"
       ></button>
     </div>
   </li>
@@ -103,16 +102,17 @@
 <template id="flashcard-template">
   <li class="card">
     <h3 class="card__title"></h3>
+    <p class="card__answer"></p>
     <div class="card__row">
       <button
         type="button"
-        aria-label="Edit card"
-        class="card__edit-btn"
+        aria-label="Flip card"
+        class="card__btn card__btn_type_flip"
       ></button>
       <button
         type="button"
         aria-label="Delete card"
-        class="card__delete-btn"
+        class="card__delete-btn card__btn card__btn_type_delete"
       ></button>
     </div>
   </li>
