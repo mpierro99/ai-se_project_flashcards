@@ -1,0 +1,39 @@
+@media screen and (max-width: 600px) {
+  .page::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px; /* was 156px — blur extends above the box */
+    background: linear-gradient(transparent, #ececec 35%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .gallery__new-card-btn {
+    position: fixed;
+    bottom: 75px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px); /* ← was width: auto */
+    max-width: none;
+    height: 44px;
+    padding: 12px 16px 14px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    background-color: #1a1a1a; /* ← black */
+    color: #fff; /* ← white text */
+    z-index: 4;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 5;
+  }
+}
