@@ -100,3 +100,11 @@
 .card.card_flipped {
   background-color: #fff;
 }
+
+@media (max-width: 600px) {
+  .card {
+    max-width: none;
+    height: auto;
+    aspect-ratio: 353 / 205;
+  }
+}

@@ -24,3 +24,9 @@
 .page__main-content_location_carousel {
   margin-top: 106px;
 }
+
+@media (max-width: 600px) {
+  .page__main-content {
+    margin-top: 42px;
+  }
+}

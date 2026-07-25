@@ -53,13 +53,23 @@
   margin-bottom: 0;
 }
 
-.gallery__practice-btn {
-  padding: 12px 16px 14px;
-  border: none;
-  border-radius: 8px;
-  background-color: #1a1a1a;
-  color: #fff;
-  font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
+.gallery__practice-btn:hover {
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.3)
+  );
+  background-blend-mode: overlay;
+}
+
+@media (max-width: 600px) {
+  .gallery__title {
+    font-size: 32px;
+    margin-bottom: 0;
+  }
+
+  .gallery__new-card-btn {
+    max-width: none;
+    height: auto;
+    aspect-ratio: 353 / 205;
+  }
 }
