@@ -11,6 +11,14 @@
     z-index: 3;
   }
 
+  .page_no-mobile-bar::after {
+    display: none;
+  }
+
+  .page_no-mobile-bar .footer {
+    position: static;
+  }
+
   .gallery__new-card-btn,
   .gallery__practice-btn {
     position: fixed;

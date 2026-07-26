@@ -14,6 +14,7 @@ const homeSection = document.querySelector("#home");
 const carouselSection = document.querySelector("#carousel");
 const notFoundSection = document.querySelector("#not-found");
 let currentDeck = null;
+const pageEl = document.querySelector(".page");
 
 function createGalleryCardEl(item) {
   const templateClone = deckTemplate.content.cloneNode(true);
@@ -72,6 +73,7 @@ function renderDeckCardEl(card, deckColorClass) {
 function renderHomeView() {
   mainContent.classList.remove("page__main-content_location_carousel");
   homeSection.style.display = "";
+  pageEl.classList.remove("page_no-mobile-bar");
   deckViewSection.style.display = "none";
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
@@ -81,6 +83,7 @@ function renderDeckView(deck) {
   currentDeck = deck;
   deckViewTitle.textContent = deck.name;
   deckGalleryList.innerHTML = "";
+  pageEl.classList.remove("page_no-mobile-bar");
 
   const deckColorClass = `card_color_${hexToString(deck.color)}`;
   deck.cards.forEach((card) => renderDeckCardEl(card, deckColorClass));
@@ -98,6 +101,7 @@ function renderNotFoundView() {
   deckViewSection.style.display = "none";
   carouselSection.style.display = "none";
   notFoundSection.style.display = "";
+  pageEl.classList.add("page_no-mobile-bar");
 }
 
 function setView(route) {
@@ -134,6 +138,7 @@ function setView(route) {
     if (!deck) {
       renderNotFoundView();
       return;
+      pageEl.classList.add("page_no-mobile-bar");
     }
 
     mainContent.classList.add("page__main-content_location_carousel");
