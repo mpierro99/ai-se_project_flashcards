@@ -32,3 +32,7 @@ for both desktop and mobile screens.
 ## Deployed Site
 
 Check out [this site](https://mpierro99.github.io/ai-se_project_flashcards) on GitHub Pages.
+
+## Project Pitch Video
+
+Check out https://www.loom.com/share/174853801b894c3f8814e026c550ebcf, where I describe my project and some challenges I faced while building it.
