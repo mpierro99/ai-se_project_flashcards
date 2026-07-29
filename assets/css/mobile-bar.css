@@ -45,13 +45,13 @@
   }
 
   .gallery__practice-btn {
-    width: 170px;
+    width: calc(50% - 25px);
     left: auto;
     right: 20.5px;
   }
 
   .gallery__new-card-btn_location_deck-view {
-    width: 170px;
+    width: calc(50% - 25px);
     max-width: none;
     left: 20.5px;
     right: auto;

@@ -138,7 +138,6 @@ function setView(route) {
     if (!deck) {
       renderNotFoundView();
       return;
-      pageEl.classList.add("page_no-mobile-bar");
     }
 
     mainContent.classList.add("page__main-content_location_carousel");
@@ -146,7 +145,7 @@ function setView(route) {
     deckViewSection.style.display = "none";
     notFoundSection.style.display = "none";
     carouselSection.style.display = "";
-
+    pageEl.classList.add("page_no-mobile-bar");
     renderCarouselView(deck);
     return;
   }
