@@ -15,6 +15,7 @@ const carouselSection = document.querySelector("#carousel");
 const notFoundSection = document.querySelector("#not-found");
 let currentDeck = null;
 const pageEl = document.querySelector(".page");
+const newDeckSection = document.querySelector("#new-deck-view");
 
 function createGalleryCardEl(item) {
   const templateClone = deckTemplate.content.cloneNode(true);
@@ -77,6 +78,7 @@ function renderHomeView() {
   deckViewSection.style.display = "none";
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
+  newDeckSection.style.display = "none";
 }
 
 function renderDeckView(deck) {
@@ -93,6 +95,7 @@ function renderDeckView(deck) {
   deckViewSection.style.display = "flex";
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
+  newDeckSection.style.display = "none";
 }
 
 function renderNotFoundView() {
@@ -102,6 +105,17 @@ function renderNotFoundView() {
   carouselSection.style.display = "none";
   notFoundSection.style.display = "";
   pageEl.classList.add("page_no-mobile-bar");
+  newDeckSection.style.display = "none";
+}
+
+function renderNewDeckView() {
+  mainContent.classList.remove("page__main-content_location_carousel");
+  pageEl.classList.remove("page_no-mobile-bar");
+  homeSection.style.display = "none";
+  deckViewSection.style.display = "none";
+  carouselSection.style.display = "none";
+  notFoundSection.style.display = "none";
+  newDeckSection.style.display = "";
 }
 
 function setView(route) {
@@ -111,7 +125,7 @@ function setView(route) {
     deckViewSection.style.display = "none";
     carouselSection.style.display = "none";
     notFoundSection.style.display = "none";
-    // About view not implemented yet.
+    newDeckSection.style.display = "none";
     return;
   }
 
@@ -119,7 +133,10 @@ function setView(route) {
     renderHomeView();
     return;
   }
-
+  if (route === "#new-deck-view") {
+    renderNewDeckView();
+    return;
+  }
   if (route.startsWith("#deck/")) {
     const deckID = route.split("/")[1];
     const deck = getDeckByID(deckID);
@@ -145,6 +162,7 @@ function setView(route) {
     deckViewSection.style.display = "none";
     notFoundSection.style.display = "none";
     carouselSection.style.display = "";
+    newDeckSection.style.display = "none";
     pageEl.classList.add("page_no-mobile-bar");
     renderCarouselView(deck);
     return;
@@ -157,6 +175,11 @@ practiceBtn.addEventListener("click", () => {
   if (currentDeck) {
     window.location.hash = `#carousel/${currentDeck.id}`;
   }
+});
+
+const newDeckBtn = document.querySelector("#home .gallery__new-card-btn");
+newDeckBtn.addEventListener("click", () => {
+  window.location.hash = "#new-deck-view";
 });
 
 window.addEventListener("hashchange", () => {

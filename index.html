@@ -83,6 +83,107 @@
           ></button>
         </div>
       </section>
+      <section class="new-deck-view" id="new-deck-view">
+        <h2 class="new-deck-view__title">New Deck</h2>
+
+        <form class="new-deck-view__form" id="new-deck-form">
+          <fieldset class="new-deck-view__colors">
+            <legend class="new-deck-view__subtitle">Pick the deck color</legend>
+
+            <label class="new-deck-view__swatch">
+              <input
+                class="new-deck-view__radio"
+                type="radio"
+                name="deck-color"
+                value="green"
+              />
+              <span
+                class="new-deck-view__color new-deck-view__color_type_green"
+              ></span>
+            </label>
+            <label class="new-deck-view__swatch">
+              <input
+                class="new-deck-view__radio"
+                type="radio"
+                name="deck-color"
+                value="blue"
+                checked
+              />
+              <span
+                class="new-deck-view__color new-deck-view__color_type_blue"
+              ></span>
+            </label>
+            <label class="new-deck-view__swatch">
+              <input
+                class="new-deck-view__radio"
+                type="radio"
+                name="deck-color"
+                value="purple"
+              />
+              <span
+                class="new-deck-view__color new-deck-view__color_type_purple"
+              ></span>
+            </label>
+            <label class="new-deck-view__swatch">
+              <input
+                class="new-deck-view__radio"
+                type="radio"
+                name="deck-color"
+                value="pink"
+              />
+              <span
+                class="new-deck-view__color new-deck-view__color_type_pink"
+              ></span>
+            </label>
+            <label class="new-deck-view__swatch">
+              <input
+                class="new-deck-view__radio"
+                type="radio"
+                name="deck-color"
+                value="orange"
+              />
+              <span
+                class="new-deck-view__color new-deck-view__color_type_orange"
+              ></span>
+            </label>
+            <label class="new-deck-view__swatch">
+              <input
+                class="new-deck-view__radio"
+                type="radio"
+                name="deck-color"
+                value="yellow"
+              />
+              <span
+                class="new-deck-view__color new-deck-view__color_type_yellow"
+              ></span>
+            </label>
+          </fieldset>
+
+          <label class="new-deck-view__subtitle" for="deck-json">
+            Write the JSON array of cards so that it matches this schema
+          </label>
+          <textarea
+            id="deck-json"
+            class="new-deck-view__textarea"
+            name="deck-json"
+            rows="12"
+            placeholder='{
+  "name": "Deck Name",
+  "cards": [
+    {
+      "question": "Question?",
+      "answer": "Answer"
+    },
+    ...
+  ]
+}'
+          ></textarea>
+
+          <button class="new-deck-view__submit" type="submit" disabled>
+            Create the Deck
+          </button>
+        </form>
+      </section>
     </main>
 
     <footer class="footer">
