@@ -1,6 +1,7 @@
 import { decks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
+import { disableSubmitBtn } from "./new-deck-view.js";
 
 const deckTemplate = document.querySelector("#deck-template");
 const flashcardTemplate = document.querySelector("#flashcard-template");
@@ -133,8 +134,10 @@ function setView(route) {
     renderHomeView();
     return;
   }
+
   if (route === "#new-deck-view") {
     renderNewDeckView();
+    disableSubmitBtn();
     return;
   }
   if (route.startsWith("#deck/")) {
