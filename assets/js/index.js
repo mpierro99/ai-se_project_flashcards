@@ -1,7 +1,8 @@
-import { decks, getDeckByID } from "./decks.js";
+import { getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
-import { disableSubmitBtn } from "./new-deck-view.js";
+import { disableSubmitBtn, showError } from "./new-deck-view.js";
+import { getDecks } from "./api.js";
 
 const deckTemplate = document.querySelector("#deck-template");
 const flashcardTemplate = document.querySelector("#flashcard-template");
@@ -189,6 +190,15 @@ window.addEventListener("hashchange", () => {
   setView(window.location.hash);
 });
 
-setView(window.location.hash);
-
-decks.forEach(renderGalleryCardEl);
+document.addEventListener("DOMContentLoaded", () => {
+  getDecks()
+    .then((decks) => {
+      decks.forEach(renderGalleryCardEl);
+    })
+    .catch(() => {
+      showError("Can't fetch decks");
+    })
+    .finally(() => {
+      setView(window.location.hash);
+    });
+});
