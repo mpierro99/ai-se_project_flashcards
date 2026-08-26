@@ -3,14 +3,6 @@ import { addDeck } from "./api.js";
 
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
 
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
 function normalizeColor(color) {
   if (!color) return "#64d583";
   const hex = color.startsWith("#") ? color.slice(1) : color;
