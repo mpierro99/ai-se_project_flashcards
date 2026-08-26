@@ -1,0 +1,44 @@
+.about {
+  max-width: 640px;
+}
+
+.about__title {
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: -0.24px;
+  margin: 0 0 16px;
+}
+
+.about__subtitle {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 32px 0 8px;
+}
+
+.about__text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+}
+
+.about__pre {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .about__title {
+    font-size: 20px;
+  }
+
+  .about__pre {
+    font-size: 13px;
+  }
+}

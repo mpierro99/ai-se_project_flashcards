@@ -18,6 +18,7 @@ const notFoundSection = document.querySelector("#not-found");
 let currentDeck = null;
 const pageEl = document.querySelector(".page");
 const newDeckSection = document.querySelector("#new-deck-view");
+const aboutSection = document.querySelector("#about-view");
 
 function createGalleryCardEl(item) {
   const templateClone = deckTemplate.content.cloneNode(true);
@@ -91,6 +92,7 @@ function renderHomeView() {
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
   newDeckSection.style.display = "none";
+  aboutSection.style.display = "none";
 }
 
 function renderDeckView(deck) {
@@ -108,6 +110,7 @@ function renderDeckView(deck) {
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
   newDeckSection.style.display = "none";
+  aboutSection.style.display = "none";
 }
 
 function renderNotFoundView() {
@@ -118,6 +121,7 @@ function renderNotFoundView() {
   notFoundSection.style.display = "";
   pageEl.classList.add("page_no-mobile-bar");
   newDeckSection.style.display = "none";
+  aboutSection.style.display = "none";
 }
 
 function renderNewDeckView() {
@@ -128,16 +132,23 @@ function renderNewDeckView() {
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
   newDeckSection.style.display = "";
+  aboutSection.style.display = "none";
+}
+
+function renderAboutView() {
+  mainContent.classList.remove("page__main-content_location_carousel");
+  pageEl.classList.remove("page_no-mobile-bar");
+  homeSection.style.display = "none";
+  deckViewSection.style.display = "none";
+  carouselSection.style.display = "none";
+  notFoundSection.style.display = "none";
+  newDeckSection.style.display = "none";
+  aboutSection.style.display = "";
 }
 
 function setView(route) {
   if (route === "#about") {
-    mainContent.classList.remove("page__main-content_location_carousel");
-    homeSection.style.display = "none";
-    deckViewSection.style.display = "none";
-    carouselSection.style.display = "none";
-    notFoundSection.style.display = "none";
-    newDeckSection.style.display = "none";
+    renderAboutView();
     return;
   }
 
@@ -151,6 +162,7 @@ function setView(route) {
     disableSubmitBtn();
     return;
   }
+
   if (route.startsWith("#deck/")) {
     const deckID = route.split("/")[1];
     const deck = getDeckByID(deckID);
@@ -177,6 +189,7 @@ function setView(route) {
     notFoundSection.style.display = "none";
     carouselSection.style.display = "";
     newDeckSection.style.display = "none";
+    aboutSection.style.display = "none";
     pageEl.classList.add("page_no-mobile-bar");
     renderCarouselView(deck);
     return;

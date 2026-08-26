@@ -184,6 +184,29 @@
           </button>
         </form>
       </section>
+
+      <section class="about" id="about-view">
+        <h2 class="about__title">About</h2>
+        <p class="about__text">
+          Flash Cards is a study app for building and practicing your own decks.
+          Create a deck, flip through the cards in practice mode, and delete the
+          ones you no longer need. Your decks are saved to a server, so they’re
+          still there when you come back.
+        </p>
+        <h3 class="about__subtitle">Deck schema</h3>
+        <p class="about__text">
+          New decks are created from a JSON object shaped like this:
+        </p>
+        <pre class="about__pre"><code>{
+  "name": "Deck Name",
+  "cards": [
+    {
+      "question": "Question?",
+      "answer": "Answer"
+    }
+  ]
+}</code></pre>
+      </section>
     </main>
 
     <footer class="footer">
