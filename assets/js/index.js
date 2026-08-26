@@ -20,6 +20,16 @@ const pageEl = document.querySelector(".page");
 const newDeckSection = document.querySelector("#new-deck-view");
 const aboutSection = document.querySelector("#about-view");
 
+/**
+ * Creates a gallery card element for a deck, including a delete button that
+ * removes the deck from the server and from the local cache.
+ * @param {Object} item The deck data used to populate the card.
+ * @param {string} item.name The deck name.
+ * @param {string} item.color The deck color in hex format.
+ * @param {object[]} item.cards The cards contained in the deck.
+ * @param {string} item._id The unique identifier for the deck.
+ * @returns {HTMLElement} The rendered deck card element.
+ */
 function createGalleryCardEl(item) {
   const templateClone = deckTemplate.content.cloneNode(true);
   const cardEl = templateClone.querySelector(".card");
@@ -52,6 +62,14 @@ function createGalleryCardEl(item) {
   return cardEl;
 }
 
+/**
+ * Creates a flashcard element for a deck detail view.
+ * @param {Object} card The flashcard object.
+ * @param {string} card.question The question text on the front of the card.
+ * @param {string} card.answer The answer text on the back of the card.
+ * @param {string} deckColorClass The CSS class used to color the card.
+ * @returns {HTMLElement} The rendered flashcard element.
+ */
 function createDeckCardEl(card, deckColorClass) {
   const templateClone = flashcardTemplate.content.cloneNode(true);
   const cardEl = templateClone.querySelector(".card");
@@ -74,16 +92,31 @@ function createDeckCardEl(card, deckColorClass) {
   return cardEl;
 }
 
+/**
+ * Renders a deck card at the top of the home gallery.
+ * @param {Object} item The deck data to render.
+ * @returns {void} This function does not return a value.
+ */
 function renderGalleryCardEl(item) {
   const cardEl = createGalleryCardEl(item);
   homeGalleryList.prepend(cardEl);
 }
 
+/**
+ * Appends a flashcard element to the deck detail gallery.
+ * @param {Object} card The flashcard to render.
+ * @param {string} deckColorClass The deck color class to apply to the card.
+ * @returns {void} This function does not return a value.
+ */
 function renderDeckCardEl(card, deckColorClass) {
   const cardEl = createDeckCardEl(card, deckColorClass);
   deckGalleryList.append(cardEl);
 }
 
+/**
+ * Shows the home view and hides all other sections.
+ * @returns {void} This function does not return a value.
+ */
 function renderHomeView() {
   mainContent.classList.remove("page__main-content_location_carousel");
   homeSection.style.display = "";
@@ -95,6 +128,15 @@ function renderHomeView() {
   aboutSection.style.display = "none";
 }
 
+/**
+ * Displays the selected deck in the deck detail view and stores it as the
+ * current deck so the practice button knows what to launch.
+ * @param {Object} deck The deck to display.
+ * @param {string} deck.name The deck name.
+ * @param {string} deck.color The deck color in hex format.
+ * @param {object[]} deck.cards The cards belonging to the deck.
+ * @returns {void} This function does not return a value.
+ */
 function renderDeckView(deck) {
   currentDeck = deck;
   deckViewTitle.textContent = deck.name;
@@ -113,6 +155,10 @@ function renderDeckView(deck) {
   aboutSection.style.display = "none";
 }
 
+/**
+ * Shows the not-found state for an invalid or missing route.
+ * @returns {void} This function does not return a value.
+ */
 function renderNotFoundView() {
   mainContent.classList.remove("page__main-content_location_carousel");
   homeSection.style.display = "none";
@@ -124,6 +170,10 @@ function renderNotFoundView() {
   aboutSection.style.display = "none";
 }
 
+/**
+ * Shows the form used to create a new deck.
+ * @returns {void} This function does not return a value.
+ */
 function renderNewDeckView() {
   mainContent.classList.remove("page__main-content_location_carousel");
   pageEl.classList.remove("page_no-mobile-bar");
@@ -135,6 +185,10 @@ function renderNewDeckView() {
   aboutSection.style.display = "none";
 }
 
+/**
+ * Displays the about page section.
+ * @returns {void} This function does not return a value.
+ */
 function renderAboutView() {
   mainContent.classList.remove("page__main-content_location_carousel");
   pageEl.classList.remove("page_no-mobile-bar");
@@ -146,6 +200,11 @@ function renderAboutView() {
   aboutSection.style.display = "";
 }
 
+/**
+ * Routes the app to the appropriate view based on the current hash.
+ * @param {string} route The current URL hash or route string.
+ * @returns {void} This function does not return a value.
+ */
 function setView(route) {
   if (route === "#about") {
     renderAboutView();

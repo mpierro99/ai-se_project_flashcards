@@ -1,15 +1,12 @@
 import { fetchedDecks } from "./decks.js";
 import { addDeck } from "./api.js";
+import { stringToHex } from "./colors.js";
 
-const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
-
-function normalizeColor(color) {
-  if (!color) return "#64d583";
-  const hex = color.startsWith("#") ? color.slice(1) : color;
-  if (!HEX_DIGITS.test(hex)) return "#64d583";
-  return "#" + hex.toLowerCase();
-}
-
+/**
+ * Validates that a deck name is a string with the required length.
+ * @param {*} name The proposed deck name, which may be any type.
+ * @returns {string|null} The original name if valid, otherwise null.
+ */
 function validateName(name) {
   if (typeof name != "string" || name.length < 2 || name.length > 80) {
     return null;
@@ -17,6 +14,11 @@ function validateName(name) {
   return name;
 }
 
+/**
+ * Parses a JSON string and returns the resulting value, or null if parsing fails.
+ * @param {string} jsonString The JSON text to parse.
+ * @returns {object|null} The parsed object, or null if the input is invalid.
+ */
 function parseJSON(jsonString) {
   try {
     return JSON.parse(jsonString);
@@ -35,14 +37,29 @@ const errorModalCloseBtn = errorModal.querySelector(".modal__close");
 const errorMessageEl = errorModal.querySelector(".modal__error");
 
 // ── modal helpers ───────────────────────────────
+/**
+ * Shows a modal by adding the visible class.
+ * @param {HTMLElement} modal The modal element to display.
+ * @returns {void} This function does not return a value.
+ */
 function openModal(modal) {
   modal.classList.add("modal_visible");
 }
 
+/**
+ * Hides a modal by removing the visible class.
+ * @param {HTMLElement} modal The modal element to hide.
+ * @returns {void} This function does not return a value.
+ */
 function closeModal(modal) {
   modal.classList.remove("modal_visible");
 }
 
+/**
+ * Displays an error message in the shared error modal.
+ * @param {string} message The error message to show.
+ * @returns {void} This function does not return a value.
+ */
 function showError(message) {
   errorMessageEl.textContent = message;
   openModal(errorModal);
@@ -53,6 +70,10 @@ errorModalCloseBtn.addEventListener("click", () => {
 });
 
 // ── enable the submit button ────────────────────
+/**
+ * Enables the submit button for the new deck form.
+ * @returns {void} This function does not return a value.
+ */
 function disableSubmitBtn() {
   submitBtn.disabled = false;
 }
@@ -81,17 +102,17 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
+  const color = stringToHex(colorValue);
+
   if (
     typeof jsonData.color === "string" &&
-    jsonData.color.toLowerCase() !== colorValue
+    jsonData.color.toLowerCase() !== color
   ) {
     showError(
-      `The color in your JSON ("${jsonData.color}") doesn't match the color you picked ("${colorValue}"). Change one so they agree, or remove the color field from the JSON.`,
+      `The color in your JSON ("${jsonData.color}") doesn't match the color you picked ("${color}"). Change one so they agree, or remove the color field from the JSON.`,
     );
     return;
   }
-
-  const color = normalizeColor(colorValue);
 
   addDeck({
     name: jsonData.name,
