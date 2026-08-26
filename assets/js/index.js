@@ -1,8 +1,8 @@
-import { getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { disableSubmitBtn, showError } from "./new-deck-view.js";
-import { getDecks } from "./api.js";
+import { getDecks, deleteDeck } from "./api.js";
+import { getDeckByID, fetchedDecks } from "./decks.js";
 
 const deckTemplate = document.querySelector("#deck-template");
 const flashcardTemplate = document.querySelector("#flashcard-template");
@@ -31,11 +31,21 @@ function createGalleryCardEl(item) {
   cardEl.classList.add(`card_color_${colorName}`);
 
   const cardLink = cardEl.querySelector(".card__link");
-  cardLink.href = `#deck/${item.id}`;
+  cardLink.href = `#deck/${item._id}`;
 
   const deleteBtn = cardEl.querySelector(".card__delete-btn");
   deleteBtn.addEventListener("click", () => {
-    cardEl.remove();
+    deleteDeck(item._id)
+      .then(() => {
+        cardEl.remove();
+        const index = fetchedDecks.findIndex((deck) => deck._id === item._id);
+        if (index !== -1) {
+          fetchedDecks.splice(index, 1);
+        }
+      })
+      .catch(() => {
+        showError("Couldn't delete that deck");
+      });
   });
 
   return cardEl;
@@ -177,7 +187,7 @@ function setView(route) {
 
 practiceBtn.addEventListener("click", () => {
   if (currentDeck) {
-    window.location.hash = `#carousel/${currentDeck.id}`;
+    window.location.hash = `#carousel/${currentDeck._id}`;
   }
 });
 
@@ -193,6 +203,7 @@ window.addEventListener("hashchange", () => {
 document.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((decks) => {
+      fetchedDecks.push(...decks);
       decks.forEach(renderGalleryCardEl);
     })
     .catch(() => {
