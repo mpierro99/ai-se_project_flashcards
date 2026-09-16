@@ -114,10 +114,14 @@ function renderDeckCardEl(card, deckColorClass) {
 }
 
 /**
- * Shows the home view and hides all other sections.
+ * Shows the home view, redraws the deck gallery from the cached decks,
+ * and hides all other sections.
  * @returns {void} This function does not return a value.
  */
 function renderHomeView() {
+  homeGalleryList.innerHTML = "";
+  fetchedDecks.forEach(renderGalleryCardEl);
+
   mainContent.classList.remove("page__main-content_location_carousel");
   homeSection.style.display = "";
   pageEl.classList.remove("page_no-mobile-bar");
