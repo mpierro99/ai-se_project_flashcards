@@ -120,7 +120,11 @@ form.addEventListener("submit", (e) => {
     cards: jsonData.cards,
   })
     .then((newDeck) => {
-      fetchedDecks.push(newDeck);
+      const cards =
+        newDeck.cards && newDeck.cards.length > 0
+          ? newDeck.cards
+          : jsonData.cards;
+      fetchedDecks.push({ ...newDeck, cards });
       window.location.hash = "deck/" + newDeck._id;
     })
     .catch(() => {

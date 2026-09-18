@@ -280,7 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((decks) => {
       fetchedDecks.push(...decks);
-      decks.forEach(renderGalleryCardEl);
     })
     .catch(() => {
       showError("Can't fetch decks");
